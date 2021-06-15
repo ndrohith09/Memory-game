@@ -5,57 +5,10 @@ const QuestionBox = ({ questions, options, selected, correct }) => {
   const [answers, setAnswers] = useState(options);
   const [result, setResult] = useState(false);
   const [toggle, setToggle] = useState(false);
-  const[timer , setTimer] =useState('00:00:00');
-  const intervalRef = useRef(null);
-
-  function getTimeRemaining(endtime){
-    const total = Date.parse(endtime) - Date.parse(new Date());
-    const seconds = Math.floor((total/1000) %60);
-    const minutes = Math.floor((total/1000/60) %60);
-    const hours = Math.floor((total/1000*60*60) %24);
-    return{
-      total , seconds , minutes , hours
-    };
-  }
-  function startTimer(deadline){
-    let {total , days , hours , minutes , seconds } = getTimeRemaining(deadline);
-    if(total>=0){
-      setTimer (
-      (hours > 9 ? hours : '0'+hours) +':'+
-      (minutes > 9 ? minutes : '0'+minutes) +':'+
-      (seconds > 9 ? seconds : '0'+seconds) 
-      )
-    }
-    else{
-      clearInterval(intervalRef.current);
-    }
-  }
-
-  function clearTimer(endtime){
-    setTimer('00:00:20');
-    if(intervalRef.current) clearInterval(intervalRef.current);
-    const id = setInterval(() => {
-      startTimer(endtime);
-    },1000)
-    intervalRef.current = id;
-  }
-  
-  function getDeadlineTime() {
-    let deadline = new Date();
-    deadline.setSeconds(deadline.getSeconds()+10);
-    return deadline
-  }
-
-  useEffect(()=>{
-    clearTimer(getDeadlineTime());
-    return () => {if(intervalRef.current) clearInterval(intervalRef.current)}
-  },[]);
-
+ 
 
   return (
     <>
-      <h1 style={{marginLeft:"80%"}}>{timer}</h1>
- 
     <div className="questionBox">
 
       <div className="question">{questions}</div>

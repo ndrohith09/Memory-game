@@ -45,7 +45,7 @@ class App extends Component {
     this.getQuestions();
     setTimeout(() => {
       this.setState({ showDescription: false, showQuestions: true });
-    }, 3000);
+    }, 5000);
     this.setState({ start: false, showDescription: true });
   };
 

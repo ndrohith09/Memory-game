@@ -16,7 +16,7 @@ export const Modal = ({ show, close }) => {
       </div>
       <div className="modal-content">
         <div className="modal-body">
-	 <img src={Help} alt="help" />
+	 <img style={{ height: "25vh"}} src={Help} alt="help" />
         </div>
         <div className="modal-footer">
           <button onClick={close} className="btn-cancel">Close</button>

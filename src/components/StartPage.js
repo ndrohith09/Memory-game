@@ -1,10 +1,11 @@
-import React from "react";
+import React , { useState } from "react";
 import "./startpage.css";
 import styled from 'styled-components';
 import {AnimatePresence, motion } from 'framer-motion'
 import PlaceOne from '../assets/1.jpg';
 import PlaceTwo from '../assets/2.jpg';
 import PlaceThree from '../assets/3.jpg';
+import { Modal } from './Modal';
 
 const Section = styled.section`
   height: 100vh;
@@ -91,6 +92,11 @@ const StartPage= (props) => {
     visible: { opacity: 1, x: 0 }
   };
 
+  const [show, setShow] = useState(false);
+
+  const closeModalHandler = () => setShow(false);
+
+
   return (
     <Section>
       <Container>
@@ -153,6 +159,23 @@ const StartPage= (props) => {
             animate={{ opacity: 1, x: 0, transition: { duration: 1 } }}
           />
         </ColumnRight>
+
+	<div>
+      
+      <Button 
+whileHover={{ scale: 1.05 }}
+            whileTap={{
+              scale: 0.95,
+              backgroundColor: '#67F6E7',
+              border: 'none',
+              color: '#000'
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 1.5 } }}
+onClick={() => setShow(true)} className="btn-openModal">Help!</Button>
+      <Modal show={show} close={closeModalHandler} />
+    </div>
+
       </Container>
     </Section>
   );
